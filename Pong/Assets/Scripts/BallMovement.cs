@@ -5,11 +5,11 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour {
 
 	public float speed = 30f;
-
+	
 	void Start()
 	{
 		float xDir = (Random.Range(0,2) * 2) - 1;
-		float yDir = Random.Range(-1.0f, 1.0f);
+		float yDir = Random.Range(-0.5f, 0.5f);
 		GetComponent<Rigidbody2D>().velocity = new Vector2(xDir, yDir) * speed;
 	}
 
