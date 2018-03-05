@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PongGameManager : MonoBehaviour 
 {
@@ -59,14 +60,15 @@ public class PongGameManager : MonoBehaviour
 		{
 			scoreManager.ScoreUpdatePlayer1();
 		}
-		Debug.Log(scoreManager.DisplayScore);
+		scoreTxt1.text = scoreManager.score1.ToString();
+		scoreTxt2.text = scoreManager.score2.ToString();
 	}
 
 	[System.Serializable]
 	public class ScoreManager
 	{
-		private int score1 = 0;
-		private int score2 = 0;
+		public int score1 = 0;
+		public int score2 = 0;
 
 		public void ResetScores()
 		{
@@ -91,4 +93,9 @@ public class PongGameManager : MonoBehaviour
 			}
 		}
 	}
+
+	public Text scoreTxt1;
+	public Text scoreTxt2;
+	
+	
 }
