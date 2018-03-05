@@ -24,6 +24,11 @@ public class BallMovement : MonoBehaviour {
 		}
 	}
 
+	void OnBecameInvisible()
+	{
+		PongGameManager.Instance.DrawBallAgain();
+	}
+
 	float hitFactor(Vector2 ballPos, Vector2 racketPos, float racketHeight)
 	{
 		//1 top of racket ; 0 middle of racket; -1 bottom of racket

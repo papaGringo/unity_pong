@@ -40,7 +40,7 @@ public class RacketControl : MonoBehaviour {
 			if(ball.transform.position.normalized.x > 0.65f)
 			{
 				float d = ball.transform.position.y - transform.position.y;				
-				GetComponent<Rigidbody2D>().velocity = Vector2.up * speed  *  (d>0 ? 1.5f : -1.5f);
+				GetComponent<Rigidbody2D>().velocity = Vector2.up * speed  *  (d>0 ? Random.Range(1.5f, 1.75f) : Random.Range(-1.5f,-1.25f));
 			}
 			else
 			{

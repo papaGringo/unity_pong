@@ -39,15 +39,21 @@ public class PongGameManager : MonoBehaviour
 
 	private void StartBall()
 	{
-		int i = Random.Range(0, spawnPoints.Length);
-		currBall = Instantiate(ballPrefab, spawnPoints[i].transform);
-		currBall.transform.SetParent(this.gameObject.transform);
+		if(!currBall)
+		{
+			int i = Random.Range(0, spawnPoints.Length);
+			currBall = Instantiate(ballPrefab, spawnPoints[i].transform);
+			currBall.transform.SetParent(this.gameObject.transform);
+		}
 	}
 
 	private void DestroyBall()
 	{
-		currBall.transform.SetParent(null);
-		Destroy(currBall, 2);
+		if(currBall != null)
+		{
+			currBall.transform.SetParent(null);
+			Destroy(currBall, 2);
+		}
 	}
 
 	private void UpdateScore(string wallName)
@@ -102,6 +108,15 @@ public class PongGameManager : MonoBehaviour
 		DestroyBall();
 		UpdateScore(wallName);
 		StartCoroutine(RestartBall());
+	}
+
+	public void DrawBallAgain()
+	{
+		if(currBall != null)
+		{	
+			DestroyBall();
+			StartCoroutine(RestartBall());
+		}
 	}
 
 	IEnumerator RestartBall()
