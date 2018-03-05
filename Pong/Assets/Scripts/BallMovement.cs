@@ -8,10 +8,9 @@ public class BallMovement : MonoBehaviour {
 
 	void Start()
 	{
-		float xDir = (Random.Range(0,2) * 2) - 1; // exact random value -1 or 1
-		//float yDir = Random.Range(-1, 2);
-		GetComponent<Rigidbody2D>().velocity = new Vector2(xDir, 0) * speed;
-		//GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+		float xDir = (Random.Range(0,2) * 2) - 1;
+		float yDir = Random.Range(-1.0f, 1.0f);
+		GetComponent<Rigidbody2D>().velocity = new Vector2(xDir, yDir) * speed;
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
