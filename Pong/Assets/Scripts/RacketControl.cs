@@ -8,7 +8,7 @@ public class RacketControl : MonoBehaviour {
 	public bool isAIEnabled = false;
 	public string axis = "Vertical";
 
-	private GameObject ball;
+	private GameObject ball;	
 	void Update()
 	{
 		if(isAIEnabled)
@@ -37,10 +37,9 @@ public class RacketControl : MonoBehaviour {
 	{
 		while(ball)
 		{
-			if(ball.transform.position.normalized.x > 0.6f)
+			if(ball.transform.position.normalized.x > 0.55f)
 			{
-				float d = ball.transform.position.y - transform.position.y;
-				float f = d/ ball.GetComponent<BoxCollider2D>().bounds.size.y;				
+				float d = ball.transform.position.y - transform.position.y;				
 				GetComponent<Rigidbody2D>().velocity = Vector2.up * speed  *  (d>0 ? 1.5f : -1.5f);
 			}
 			else
