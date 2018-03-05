@@ -8,15 +8,7 @@ public class WallTrigger : MonoBehaviour {
 	{
 		if(other.gameObject.tag == "ball")
 		{
-			PongGameManager.Instance.DestroyBall();			
-			PongGameManager.Instance.UpdateScore(this.gameObject.tag);
-			StartCoroutine("RestartBall");
+			PongGameManager.Instance.UpdateScoreAndDrawBallAgain(this.gameObject.tag);			
 		}	
-	}
-
-	IEnumerator RestartBall()
-	{
-		yield return new WaitForSeconds(2);
-		PongGameManager.Instance.StartBall();
 	}
 }

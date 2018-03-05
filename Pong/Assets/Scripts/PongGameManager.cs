@@ -37,20 +37,20 @@ public class PongGameManager : MonoBehaviour
 
 	public ScoreManager scoreManager;
 
-	public void StartBall()
+	private void StartBall()
 	{
 		int i = Random.Range(0, spawnPoints.Length);
 		currBall = Instantiate(ballPrefab, spawnPoints[i].transform);
 		currBall.transform.SetParent(this.gameObject.transform);
 	}
 
-	public void DestroyBall()
+	private void DestroyBall()
 	{
 		currBall.transform.SetParent(null);
 		Destroy(currBall, 2);
 	}
 
-	public void UpdateScore(string wallName)
+	private void UpdateScore(string wallName)
 	{
 		if(wallName == "scoreWallLeft")
 		{
@@ -96,6 +96,19 @@ public class PongGameManager : MonoBehaviour
 
 	public Text scoreTxt1;
 	public Text scoreTxt2;
+
+	public void UpdateScoreAndDrawBallAgain(string wallName)
+	{
+		DestroyBall();
+		UpdateScore(wallName);
+		StartCoroutine(RestartBall());
+	}
+
+	IEnumerator RestartBall()
+	{
+		yield return new WaitForSeconds(2);
+		StartBall();
+	}
 	
 	
 }
