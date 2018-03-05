@@ -37,7 +37,7 @@ public class RacketControl : MonoBehaviour {
 	{
 		while(ball)
 		{
-			if(ball.transform.position.normalized.x > 0.55f)
+			if(ball.transform.position.normalized.x > 0.65f)
 			{
 				float d = ball.transform.position.y - transform.position.y;				
 				GetComponent<Rigidbody2D>().velocity = Vector2.up * speed  *  (d>0 ? 1.5f : -1.5f);
