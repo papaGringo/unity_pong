@@ -33,30 +33,21 @@ public class RacketControl : MonoBehaviour {
 			StartCoroutine("AIControl")	;
 		}
 	}
-
 	IEnumerator AIControl()
 	{
-		while(!ball)
+		while(ball)
 		{
+			if(ball.transform.position.normalized.x > 0.6f)
+			{
+				float d = ball.transform.position.y - transform.position.y;
+				float f = d/ ball.GetComponent<BoxCollider2D>().bounds.size.y;				
+				GetComponent<Rigidbody2D>().velocity = Vector2.up * speed  *  (d>0 ? 1.5f : -1.5f);
+			}
+			else
+			{
+				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			}
 			yield return null;
 		}
-		/*
-		if(Vector2.Distance(transform.position, ball.transform.position) < 50f)
-		{
-			Debug.Log(ball.transform.position.normalized.x);
-			float d = ball.transform.position.y - transform.position.y;
-			GetComponent<Rigidbody2D>().velocity = Vector2.up * speed * (d>0 ? 1f : -1f);
-		}
-		*/
-		if(ball.transform.position.normalized.x > 0.6f)
-		{
-			float d = ball.transform.position.y - transform.position.y;
-			GetComponent<Rigidbody2D>().velocity = Vector2.up * speed  *  (d>0 ? 1.5f : -1.5f);
-		}
-		else
-		{
-			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-		}
-		
 	}
 }
