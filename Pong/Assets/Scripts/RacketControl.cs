@@ -40,8 +40,16 @@ public class RacketControl : MonoBehaviour {
 		{
 			yield return null;
 		}
-		float d = ball.transform.position.y - transform.position.y;
-		//Vector2 spdAI = new Vector2(0, d>0? Mathf.Min(d, 1.0f) : Mathf.Min(-d, 1.0f) );
-		GetComponent<Rigidbody2D>().velocity = Vector2.up * speed * d;
+
+		if(Vector2.Distance(transform.position, ball.transform.position) < 50f)
+		{
+			float d = ball.transform.position.y - transform.position.y;
+			GetComponent<Rigidbody2D>().velocity = Vector2.up * speed * (d>0 ? 1f : -1f);
+		}
+		else
+		{
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		}
+		
 	}
 }
